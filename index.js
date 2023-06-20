@@ -1,8 +1,3 @@
-// =============CLI with yargs=========================
-// const yargs = require("yargs");
-// const { hideBin } = require("yargs/helpers");
-// ====================================================
-
 const { Command } = require("commander");
 
 const program = new Command();
@@ -19,7 +14,6 @@ const argv = program.opts();
 
 const contacts = require("./contacts");
 
-// TODO: рефакторити
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
@@ -42,15 +36,5 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       console.warn("\x1B[31m Unknown action type!");
   }
 };
-
-// =============CLI with yargs=========================
-
-// const arr = hideBin(process.argv);
-// const { argv } = yargs(arr);
-// console.log(argv);
-// invokeAction(argv);
-
-// !!!For use yargs, you should to transform ID to string in function when you needed ID.
-// ========================================================
 
 invokeAction(argv);
