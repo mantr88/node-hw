@@ -1,5 +1,9 @@
-const yargs = require("yargs");
-const { hideBin } = require("yargs/helpers");
+// =============CLI with yargs=========================
+// const yargs = require("yargs");
+// const { hideBin } = require("yargs/helpers");
+// ====================================================
+
+const { program } = require("commander");
 
 const contacts = require("./contacts");
 
@@ -36,6 +40,26 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 //   phone: "(321) 451-7038",
 // });
 // invokeAction({ action: "remove", id: "2WVPwIk20urQ8crQ8sVC0" });
-const arr = hideBin(process.argv);
-const { argv } = yargs(arr);
-console.log(argv);
+
+// =============CLI with yargs=========================
+
+// const arr = hideBin(process.argv);
+// const { argv } = yargs(arr);
+// console.log(argv);
+// invokeAction(argv);
+
+// !!!For use yargs, you should to transform ID to string in function when you needed ID.
+// ========================================================
+
+program
+  .option("--a, --action, <type>")
+  .option("--id, <type>")
+  .option("--n, --name, <type>")
+  .option("--e, --email, <type>")
+  .option("--p, --phone, <type>");
+
+program.parse();
+
+const options = program.opts();
+
+invokeAction(options);
